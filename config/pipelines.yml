@@ -1,0 +1,12 @@
+pipelines:
+  - name: orders_pipeline
+    connection: "sqlite:///test.db"
+    checks:
+      - type: null_rate
+        table: orders
+        column: customer_id
+        threshold: 0.05
+
+      - type: row_count_drift
+        table: orders
+        threshold: 0.2
